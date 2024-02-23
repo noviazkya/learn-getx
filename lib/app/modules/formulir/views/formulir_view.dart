@@ -41,20 +41,15 @@ class FormulirView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('Tanggal Lahir:'),
-                            Obx(() => Text(formulirController.selectedDate.value)),
+                            Obx(() =>
+                                Text(formulirController.selectedDate.value)),
                           ],
                         ),
                       ),
                     ),
                     SizedBox(height: 16.0),
                     DropdownButtonFormField(
-                      items: [
-                        'Islam',
-                        'Kristen',
-                        'Hindu',
-                        'Buddha',
-                        'Lainnya'
-                      ]
+                      items: ['Islam', 'Kristen', 'Hindu', 'Buddha', 'Lainnya']
                           .map((agama) => DropdownMenuItem(
                               value: agama, child: Text(agama)))
                           .toList(),
@@ -105,36 +100,38 @@ class FormulirView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16.0),
-            Obx(() {
-              if (formulirController.isFormSubmitted.value) {
-                return AlertDialog(
-                  title: Text('Output'),
-                  content: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Nama: ${formulirController.nama.value}'),
-                      Text('Tanggal Lahir: ${formulirController.tanggalLahir.value}'),
-                      Text('Agama: ${formulirController.agama.value}'),
-                      Text('Jenis Kelamin: ${formulirController.jenisKelamin.value}'),
-                      Text('Alamat: ${formulirController.alamat.value}'),
-                      Text('Hobi: ${formulirController.hobi.value.join(', ')}'),
-                    ],
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Get.back(); // Menutup dialog setelah dikonfirmasi
-                        formulirController.isFormSubmitted.value = true;
-                      },
-                      child: Text('OK'),
+              Obx(() {
+                if (formulirController.isFormSubmitted.value) {
+                  return AlertDialog(
+                    title: Text('Output'),
+                    content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Nama: ${formulirController.nama.value}'),
+                        Text(
+                            'Tanggal Lahir: ${formulirController.tanggalLahir.value}'),
+                        Text('Agama: ${formulirController.agama.value}'),
+                        Text(
+                            'Jenis Kelamin: ${formulirController.jenisKelamin.value}'),
+                        Text('Alamat: ${formulirController.alamat.value}'),
+                        Text(
+                            'Hobi: ${formulirController.hobi.value.join(', ')}'),
+                      ],
                     ),
-                  ],
-                );
-              } else {
-                return SizedBox.shrink();
-              }
-            }),
-
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Get.back(); // Menutup dialog setelah dikonfirmasi
+                          formulirController.isFormSubmitted.value = true;
+                        },
+                        child: Text('OK'),
+                      ),
+                    ],
+                  );
+                } else {
+                  return SizedBox.shrink();
+                }
+              }),
             ],
           ),
         ),

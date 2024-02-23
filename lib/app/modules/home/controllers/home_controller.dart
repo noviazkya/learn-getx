@@ -1,23 +1,13 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  Future<void> logout() async {
+    // Hapus token dari Shared Preferences
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    localStorage.remove('token');
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+    // Redirect ke halaman login setelah logout
+    Get.offAllNamed('/login');
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
